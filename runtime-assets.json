@@ -1,9 +1,12 @@
 {
   "extension": {
-    "source": "local-snapshot",
-    "sourceCommit": "a1a62441fee978ed7dd25d01fbfb7fc4f4996ce0",
-    "url": "https://github.com/hqyyqh/dynasense-binder/releases/download/snapshot-a1a62441/dynasense-a1a62441-linux-x64.vsix",
-    "sha256": "ea304907a76261462f2c838b9f4e98e4eb29e77342f5c2fe57ef583114ae64bc"
+    "source": "github-release",
+    "releaseId": 411708043,
+    "assetId": 637242438,
+    "tag": "v3.2.0",
+    "version": "3.2.0",
+    "url": "https://github.com/hqyyqh/vscode-lsdyna/releases/download/v3.2.0/dynasense-3.2.0-linux-x64.vsix",
+    "sha256": "6644620e4096aee9469dbad4c93dafbd4e87684c7ccb6311a3a3ff4953073f98"
   },
   "manual": {
     "url": "https://github.com/hqyyqh/dynasense-binder/releases/download/manual-full-20261015/manual-pack-full-20261015.zip",

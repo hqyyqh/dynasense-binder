@@ -28,7 +28,8 @@ def main():
     with tempfile.TemporaryDirectory(prefix="dynasense-assets-") as temporary:
         for kind in ("extension", "manual"):
             asset = lock[kind]
-            if not asset["url"].startswith("https://github.com/hqyyqh/dynasense-binder/releases/download/"):
+            repository = "vscode-lsdyna" if kind == "extension" else "dynasense-binder"
+            if not asset["url"].startswith(f"https://github.com/hqyyqh/{repository}/releases/download/"):
                 raise ValueError("Unexpected deployment asset URL")
             path = Path(temporary) / kind
             with urllib.request.urlopen(asset["url"], timeout=120) as response, path.open("wb") as target:

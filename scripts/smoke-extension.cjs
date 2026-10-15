@@ -10,6 +10,12 @@ const extension = path.join(folder, matches[0]);
 const metadata = JSON.parse(fs.readFileSync(path.join(extension, 'package.json')));
 assert.equal(metadata.publisher, 'hqyyqh');
 assert.equal(metadata.name, 'dynasense');
+const lock = JSON.parse(fs.readFileSync('runtime-assets.json'));
+assert.equal(metadata.version, lock.extension.version);
+const semver = require(path.join(extension, 'node_modules/semver'));
+const host = require('node:child_process').execFileSync('code-server', ['--version'], { encoding: 'utf8' });
+const hostVersion = host.match(/Code ([0-9.]+)/)?.[1];
+assert(hostVersion && semver.satisfies(hostVersion, metadata.engines.vscode), 'Host must satisfy the VSIX engine');
 const sqlite = require(path.join(extension, 'node_modules/@vscode/sqlite3'));
 const database = new sqlite.Database(':memory:');
 database.get('SELECT sqlite_version() AS version, 1 + 1 AS result', (error, row) => {
