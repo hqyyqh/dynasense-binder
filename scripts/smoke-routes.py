@@ -1,5 +1,6 @@
 """Exercise the real authenticated Jupyter proxy under a Binder-style prefix."""
 import json
+from pathlib import Path
 from html.parser import HTMLParser
 import os
 import secrets
@@ -62,6 +63,9 @@ with tempfile.TemporaryFile(mode="w+") as log:
                     assets.feed(html)
                     assert assets.paths, 'Workbench must expose local scripts/styles'
                     if language == "zh":
+                        print(json.dumps({"assets": assets.paths, "nls_html": [line.strip() for line in html.splitlines() if 'nls' in line.lower()]}), flush=True)
+                        for config in (Path.home() / '.local/share/code-server').rglob('languagepacks.json'):
+                            print(json.dumps({"languagepacks": str(config), "configuration": json.loads(config.read_text())}), flush=True)
                         assert any("zh-cn" in asset.lower() for asset in assets.paths), 'Chinese host translation was not loaded'
                     for asset in assets.paths:
                         target = urljoin(url, asset)
