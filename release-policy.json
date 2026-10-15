@@ -1,0 +1,8 @@
+{
+  "repository": "hqyyqh/vscode-lsdyna",
+  "source": "local-snapshot",
+  "acceptedReleaseId": null,
+  "acceptedAssetId": null,
+  "acceptedPublishedAt": null,
+  "note": "Initial local snapshot is newer than the public v3.2.0 release. Do not automatically replace it."
+}

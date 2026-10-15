@@ -1,0 +1,29 @@
+name: Check DynaSense release candidate
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 1 * * *'
+permissions:
+  contents: read
+concurrency:
+  group: dynasense-release-candidate
+  cancel-in-progress: false
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test release selection and package checks
+        run: python -m unittest discover -s scripts -p 'test_release.py' -v
+      - name: Check stable upstream release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/check-release.py
+      - name: Retain candidate for runtime acceptance
+        uses: actions/upload-artifact@v4
+        with:
+          name: dynasense-release-candidate
+          path: candidate/
+          if-no-files-found: ignore
+          retention-days: 14
