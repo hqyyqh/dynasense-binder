@@ -1,0 +1,12 @@
+name: dynasense-experience
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - nodejs=22.23.2
+  - code-server=4.132.0
+  - jupyterlab=4.4.9
+  - pip
+  - pip:
+      - jupyter-vscode-proxy==0.7
+      - jupyter-server-proxy==4.5.0

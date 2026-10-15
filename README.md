@@ -7,8 +7,8 @@ The initial environment is undergoing acceptance. A launch link will follow afte
 
 ## Walkthroughs
 
-- [中文操作引导](guides/GUIDE.zh.md)
-- [English walkthrough](guides/GUIDE.en.md)
+- [中文操作引导](demo/GUIDE.zh.md)
+- [English walkthrough](demo/GUIDE.en.md)
 
 ## Release checks
 
@@ -26,3 +26,10 @@ The homepage will use a Binder launch URL, never a temporary /user/ session URL.
 Scheduled workflows can pause after 60 days without repository activity. Use the Actions
 manual trigger to check explicitly; release-triggered cross-repository dispatch can be added
 when the upstream publishing workflow is connected.
+
+## Runtime validation
+
+See [deployment instructions](DEPLOYMENT.md). Runtime builds use pinned release assets.
+The Chinese and English proxy paths are vscode-zh/ and vscode-en/.
+Homepage promotion waits for real UI acceptance.
+

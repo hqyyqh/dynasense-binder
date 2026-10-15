@@ -1,0 +1,8 @@
+#!/bin/bash
+set -euo pipefail
+cd "${REPO_DIR:-$PWD}"
+python scripts/fetch-assets.py
+python scripts/check-assets.py
+code-server --install-extension assets/dynasense-linux-x64.vsix --force
+code-server --install-extension MS-CEINTL.vscode-language-pack-zh-hans@1.131.0
+python scripts/configure-workspace.py

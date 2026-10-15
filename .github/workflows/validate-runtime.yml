@@ -1,0 +1,29 @@
+name: Build and validate Binder runtime
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - environment.yml
+      - postBuild
+      - start
+      - runtime-assets.json
+      - demo/**
+      - scripts/**
+      - .github/workflows/validate-runtime.yml
+permissions:
+  contents: read
+concurrency:
+  group: binder-runtime-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m unittest discover -s scripts -p 'test_*.py' -v
+      - run: python -m pip install jupyter-repo2docker==2026.4.0
+      - name: Build the actual Binder image
+        run: jupyter-repo2docker --no-run --image-name dynasense-validation .
+      - name: Check installed extension and Linux native database driver
+        run: docker run --rm --entrypoint /bin/bash dynasense-validation -lc 'code-server --version && code-server --list-extensions && node scripts/smoke-extension.cjs'
