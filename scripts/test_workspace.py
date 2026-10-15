@@ -16,6 +16,7 @@ class LocaleWorkspaceCheck(unittest.TestCase):
             for suffix, locale in (("zh", "zh-cn"), ("en", "en")):
                 settings = json.loads((home / f".local/share/code-server/profile-{suffix}/User/settings.json").read_text())
                 self.assertEqual(settings["lsdyna.language"], locale)
+                self.assertFalse(settings["security.workspace.trust.enabled"])
                 command = servers["vscode-" + suffix]["command"]
                 self.assertEqual(command[command.index("--locale") + 1], locale)
                 self.assertEqual(command[command.index("--extensions-dir") + 1], str(home / ".local/share/code-server/extensions"))

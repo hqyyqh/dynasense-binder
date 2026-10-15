@@ -6,6 +6,8 @@ root = Path(__file__).resolve().parents[1]
 home = Path.home()
 base = json.loads((root / "demo/.vscode/settings.json").read_text())
 base["lsdyna.manualsDir"] = str(root / "manual-pack")
+# Explicitly requested for these disposable demo profiles, not the host computer.
+base["security.workspace.trust.enabled"] = False
 servers = {}
 for suffix, locale in (("zh", "zh-cn"), ("en", "en")):
     profile = home / ".local/share/code-server" / ("profile-" + suffix)

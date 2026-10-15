@@ -4,5 +4,6 @@ cd "${REPO_DIR:-$PWD}"
 python scripts/fetch-assets.py
 python scripts/check-assets.py
 code-server --extensions-dir "$HOME/.local/share/code-server/extensions" --install-extension assets/dynasense-linux-x64.vsix --force
-code-server --extensions-dir "$HOME/.local/share/code-server/extensions" --install-extension MS-CEINTL.vscode-language-pack-zh-hans@1.131.0
 python scripts/configure-workspace.py
+code-server --user-data-dir "$HOME/.local/share/code-server/profile-zh" --extensions-dir "$HOME/.local/share/code-server/extensions" --install-extension MS-CEINTL.vscode-language-pack-zh-hans@1.131.0
+rm -f assets/dynasense-linux-x64.vsix

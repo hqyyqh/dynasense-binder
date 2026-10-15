@@ -61,6 +61,8 @@ with tempfile.TemporaryFile(mode="w+") as log:
                     assets = WorkbenchAssets()
                     assets.feed(html)
                     assert assets.paths, 'Workbench must expose local scripts/styles'
+                    if language == "zh":
+                        assert any("zh-cn" in asset.lower() for asset in assets.paths), 'Chinese host translation was not loaded'
                     for asset in assets.paths:
                         target = urljoin(url, asset)
                         assert target.startswith(base), target
