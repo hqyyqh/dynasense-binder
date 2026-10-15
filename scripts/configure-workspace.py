@@ -23,6 +23,7 @@ for suffix, locale in (("zh", "zh-cn"), ("en", "en")):
         "new_browser_tab": True,
     }
 # code-server is reached through the authenticated Binder/Jupyter proxy.
-config = home / ".jupyter/jupyter_server_config.d/dynasense.json"
+# The .d directory enables extensions; general traitlets belong in the root config.
+config = home / ".jupyter/jupyter_server_config.json"
 config.parent.mkdir(parents=True, exist_ok=True)
 config.write_text(json.dumps({"ServerProxy": {"servers": servers}}, ensure_ascii=False, indent=2))

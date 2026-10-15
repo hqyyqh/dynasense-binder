@@ -1,7 +1,6 @@
 """Exercise the real authenticated Jupyter proxy under a Binder-style prefix."""
 import json
 import os
-from pathlib import Path
 import secrets
 import signal
 import subprocess
