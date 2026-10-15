@@ -9,7 +9,7 @@
     "sha256": "6644620e4096aee9469dbad4c93dafbd4e87684c7ccb6311a3a3ff4953073f98"
   },
   "manual": {
-    "url": "https://github.com/hqyyqh/dynasense-binder/releases/download/manual-full-20261015/manual-pack-full-20261015.zip",
-    "sha256": "48de3d2775945599ab12183141c68bb339ba0e773488e39ebfe74bd0bbbbda6a"
+    "url": "https://github.com/hqyyqh/dynasense-binder/releases/download/manual-online-20261016/manual-pack-online.zip",
+    "sha256": "e01c10bbf0891052d994f67a6cefe8510e32f4e4b8671e04cb32e894de65f02c"
   }
 }
