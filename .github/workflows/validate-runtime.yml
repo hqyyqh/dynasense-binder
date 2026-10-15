@@ -27,3 +27,5 @@ jobs:
         run: jupyter-repo2docker --no-run --image-name dynasense-validation .
       - name: Check installed extension and Linux native database driver
         run: docker run --rm --entrypoint /bin/bash dynasense-validation -lc 'code-server --version && code-server --extensions-dir "$HOME/.local/share/code-server/extensions" --list-extensions && node scripts/smoke-extension.cjs'
+      - name: Open both language routes through Jupyter
+        run: docker run --rm --entrypoint /bin/bash dynasense-validation -lc 'python scripts/smoke-routes.py'
