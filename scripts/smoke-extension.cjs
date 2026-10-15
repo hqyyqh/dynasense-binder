@@ -24,3 +24,7 @@ database.get('SELECT sqlite_version() AS version, 1 + 1 AS result', (error, row)
   console.log(JSON.stringify({ extension: metadata.version, node: process.version, sqlite: row.version, query: 'passed' }));
   database.close();
 });
+require('node:child_process').execFileSync(process.execPath, [
+  'scripts/profile-manual.cjs', path.join(extension, 'out'), 'manual-pack',
+  path.join(os.tmpdir(), 'dynasense-manual-profile.json'),
+], { stdio: 'inherit' });

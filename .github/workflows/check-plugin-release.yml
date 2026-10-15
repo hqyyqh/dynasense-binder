@@ -4,7 +4,9 @@ on:
   schedule:
     - cron: '23 1 * * *'
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
+  actions: write
 concurrency:
   group: dynasense-release-candidate
   cancel-in-progress: false
@@ -27,3 +29,26 @@ jobs:
           path: candidate/
           if-no-files-found: ignore
           retention-days: 14
+      - name: Create candidate pull request and build its runtime
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -f candidate/release.json ]; then exit 0; fi
+          branch="codex/release-$(jq -r .releaseId candidate/release.json)-$(jq -r .assetId candidate/release.json)"
+          if [ "$(gh pr list --head "$branch" --state all --json number --jq length)" != "0" ]; then exit 0; fi
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null; then
+            git fetch origin "$branch"
+            git checkout -b "$branch" "origin/$branch"
+          else
+            git checkout -b "$branch"
+          fi
+          python scripts/stage-candidate.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add runtime-assets.json release-policy.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update official DynaSense release candidate'
+            git push origin "$branch"
+          fi
+          gh pr create --base main --head "$branch" --title "Update DynaSense release candidate" --body-file candidate/pr-body.md
+          gh workflow run validate-runtime.yml --ref "$branch"
