@@ -2,12 +2,10 @@
 
 Release monitoring is defined in `.github/workflows/check-plugin-release.yml`.
 It checks daily at 09:23 Asia/Shanghai and can be run manually. `release-policy.json`
-currently holds the local snapshot: public v3.2.0 must not replace the newer local
-validation package. The workflow retains candidates as Actions artifacts; it does
-not install them into visitors' running sessions or promote the homepage link.
-After the first accepted release baseline is recorded, enable `github-release`
-with its release/asset IDs and publication date. Runtime and bilingual acceptance
-remain separate from downloading and inspecting a candidate.
+uses `github-release`: the original latest stable Linux x64 VSIX is the demo baseline.
+A new verified release creates a candidate branch and PR and explicitly starts the
+runtime build. No update creates no commit. Promotion follows actual bilingual
+operation and startup acceptance; running visitor sessions are not upgraded.
 
 This directory is the deployment recipe for https://github.com/hqyyqh/dynasense-binder.
 The homepage still opens the existing local experience until online acceptance passes.
@@ -38,6 +36,9 @@ environment versions were checked against conda-forge/PyPI on 2026-10-15.
 The launch targets are `?urlpath=vscode-zh/` and `?urlpath=vscode-en/`.
 Both use the same installed extension, manual pack and editable case files.
 The locale profiles set both the host display language and `lsdyna.language`.
+Image construction indexes the installed Chinese translation files for both profiles.
+Workspace trust prompts are disabled only in these disposable demo profiles, as
+requested by the owner. Visitors can edit their private session's example files.
 The dedicated environment still requires end-to-end acceptance before homepage use.
 
 ## Measurement

@@ -13,11 +13,7 @@ The initial environment is undergoing acceptance. A launch link will follow afte
 ## Release checks
 
 GitHub Actions checks the official hqyyqh/vscode-lsdyna stable release daily and on manual dispatch.
-The initial local-source package is newer than the public v3.2.0 release, so release-policy.json
-holds that baseline instead of downgrading it. Once an accepted release baseline is recorded,
-the workflow downloads a Linux x64 candidate, checks its identity and available upstream digest,
-and retains it as an Actions artifact for runtime validation. It does not promote a candidate
-or change a running visitor session.
+The demo uses the original latest stable Linux x64 VSIX. A new verified release creates a candidate branch and pull request, then dispatches the actual runtime build. No new release means no duplicate commit. Chinese/English operation and startup acceptance must pass before the homepage is promoted. Running visitor sessions keep their installed package.
 
 The image, bilingual walkthroughs and manual assets are shared by both language experiences.
 Each visitor edits their own temporary workspace. Refreshing an active session keeps edits.
@@ -32,3 +28,4 @@ when the upstream publishing workflow is connected.
 See [deployment instructions](DEPLOYMENT.md). Runtime builds use pinned release assets.
 The Chinese and English proxy paths are vscode-zh/ and vscode-en/.
 Homepage promotion waits for real UI acceptance.
+
