@@ -2,6 +2,7 @@ name: Build and validate Binder runtime
 on:
   workflow_dispatch:
   push:
+    branches: [main, 'codex/**']
     paths:
       - environment.yml
       - postBuild

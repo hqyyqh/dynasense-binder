@@ -50,5 +50,5 @@ jobs:
             git commit -m 'Update official DynaSense release candidate'
             git push origin "$branch"
           fi
-          gh pr create --base main --head "$branch" --title "Update DynaSense release candidate" --body-file candidate/pr-body.md
           gh workflow run validate-runtime.yml --ref "$branch"
+          gh pr create --base main --head "$branch" --title "Update DynaSense release candidate" --body-file candidate/pr-body.md
