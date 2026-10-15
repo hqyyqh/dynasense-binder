@@ -32,4 +32,3 @@ when the upstream publishing workflow is connected.
 See [deployment instructions](DEPLOYMENT.md). Runtime builds use pinned release assets.
 The Chinese and English proxy paths are vscode-zh/ and vscode-en/.
 Homepage promotion waits for real UI acceptance.
-

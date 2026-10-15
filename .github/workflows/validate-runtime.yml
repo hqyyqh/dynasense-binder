@@ -26,4 +26,4 @@ jobs:
       - name: Build the actual Binder image
         run: jupyter-repo2docker --no-run --image-name dynasense-validation .
       - name: Check installed extension and Linux native database driver
-        run: docker run --rm --entrypoint /bin/bash dynasense-validation -lc 'code-server --version && code-server --list-extensions && node scripts/smoke-extension.cjs'
+        run: docker run --rm --entrypoint /bin/bash dynasense-validation -lc 'code-server --version && code-server --extensions-dir "$HOME/.local/share/code-server/extensions" --list-extensions && node scripts/smoke-extension.cjs'
