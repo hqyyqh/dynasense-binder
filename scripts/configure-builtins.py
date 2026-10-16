@@ -7,7 +7,6 @@ import sys
 EXCLUDED = {
     "GitHub.copilot-chat", "vscode.debug-auto-launch", "vscode.merge-conflict",
     "vscode.git", "vscode.git-base", "vscode.github",
-    "vscode.github-authentication", "vscode.microsoft-authentication",
     "vscode.emmet", "vscode.extension-editing", "vscode.npm",
     "vscode.grunt", "vscode.gulp", "vscode.jake",
     "vscode.css-language-features", "vscode.html-language-features",
