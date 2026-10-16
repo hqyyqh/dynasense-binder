@@ -16,10 +16,10 @@ base["extensions.autoCheckUpdates"] = False
 base["extensions.autoUpdate"] = False
 base["workbench.enableExperiments"] = False
 base["debug.showInStatusBar"] = "never"
-# Match the local single-row, filename-sized tabs with less vertical padding.
+# Keep compact, filename-sized tabs and wrap them when space runs out.
 base["workbench.editor.showTabs"] = "multiple"
 base["workbench.editor.tabSizing"] = "fit"
-base["workbench.editor.wrapTabs"] = False
+base["workbench.editor.wrapTabs"] = True
 base["window.density.editorTabHeight"] = "compact"
 servers = {}
 for suffix, locale in (("zh", "zh-cn"), ("en", "en")):
