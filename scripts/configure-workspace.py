@@ -8,6 +8,10 @@ base = json.loads((root / "demo/.vscode/settings.json").read_text())
 base["lsdyna.manualsDir"] = str(root / "manual-pack")
 # Explicitly requested for these disposable demo profiles, not the host computer.
 base["security.workspace.trust.enabled"] = False
+# Keep the demo focused on DynaSense, without Copilot sign-in or parent-repo prompts.
+base["chat.disableAIFeatures"] = True
+base["workbench.secondarySideBar.defaultVisibility"] = "hidden"
+base["git.openRepositoryInParentFolders"] = "never"
 servers = {}
 for suffix, locale in (("zh", "zh-cn"), ("en", "en")):
     profile = home / ".local/share/code-server" / ("profile-" + suffix)

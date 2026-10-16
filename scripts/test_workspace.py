@@ -17,6 +17,9 @@ class LocaleWorkspaceCheck(unittest.TestCase):
                 settings = json.loads((home / f".local/share/code-server/profile-{suffix}/User/settings.json").read_text())
                 self.assertEqual(settings["lsdyna.language"], locale)
                 self.assertFalse(settings["security.workspace.trust.enabled"])
+                self.assertTrue(settings["chat.disableAIFeatures"])
+                self.assertEqual(settings["workbench.secondarySideBar.defaultVisibility"], "hidden")
+                self.assertEqual(settings["git.openRepositoryInParentFolders"], "never")
                 command = servers["vscode-" + suffix]["command"]
                 self.assertEqual(command[command.index("--locale") + 1], locale)
                 self.assertEqual(command[command.index("--extensions-dir") + 1], str(home / ".local/share/code-server/extensions"))
