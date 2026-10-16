@@ -12,7 +12,7 @@ The initial environment is undergoing acceptance. A launch link will follow afte
 
 ## Release checks
 
-GitHub Actions checks the official hqyyqh/vscode-lsdyna stable release daily and on manual dispatch.
+GitHub Actions checks the official hqyyqh/vscode-lsdyna stable release every 30 days and on manual dispatch.
 The demo uses the original latest stable Linux x64 VSIX. A new verified release creates a candidate branch and pull request, then dispatches the actual runtime build. No new release means no duplicate commit. Chinese/English operation and startup acceptance must pass before the homepage is promoted. Running visitor sessions keep their installed package.
 
 The image, bilingual walkthroughs and manual assets are shared by both language experiences.

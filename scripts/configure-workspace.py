@@ -8,6 +8,19 @@ base = json.loads((root / "demo/.vscode/settings.json").read_text())
 base["lsdyna.manualsDir"] = str(root / "manual-pack")
 # Explicitly requested for these disposable demo profiles, not the host computer.
 base["security.workspace.trust.enabled"] = False
+# Keep the demo focused on DynaSense, without Copilot sign-in or parent-repo prompts.
+base["chat.disableAIFeatures"] = True
+base["workbench.secondarySideBar.defaultVisibility"] = "hidden"
+base["git.openRepositoryInParentFolders"] = "never"
+base["extensions.autoCheckUpdates"] = False
+base["extensions.autoUpdate"] = False
+base["workbench.enableExperiments"] = False
+base["debug.showInStatusBar"] = "never"
+# Keep compact, filename-sized tabs and wrap them when space runs out.
+base["workbench.editor.showTabs"] = "multiple"
+base["workbench.editor.tabSizing"] = "fit"
+base["workbench.editor.wrapTabs"] = True
+base["window.density.editorTabHeight"] = "compact"
 servers = {}
 for suffix, locale in (("zh", "zh-cn"), ("en", "en")):
     profile = home / ".local/share/code-server" / ("profile-" + suffix)
@@ -16,9 +29,10 @@ for suffix, locale in (("zh", "zh-cn"), ("en", "en")):
     settings = {**base, "lsdyna.language": locale}
     (user / "settings.json").write_text(json.dumps(settings, ensure_ascii=False, indent=2))
     servers["vscode-" + suffix] = {
-        "command": ["code-server", "--auth", "none", "--disable-telemetry",
+        "command": ["code-server", "--auth", "none", "--disable-telemetry", "--disable-update-check",
                     "--locale", locale, "--user-data-dir", str(profile),
                     "--extensions-dir", str(home / ".local/share/code-server/extensions"),
+                    "--builtin-extensions-dir", str(home / ".local/share/code-server/demo-builtins"),
                     "--port", "{port}", str(root / "demo")],
         "timeout": 300,
         "launcher_entry": {"title": "DynaSense · " + ("中文" if suffix == "zh" else "English")},
