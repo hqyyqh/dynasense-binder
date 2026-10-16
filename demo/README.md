@@ -15,4 +15,7 @@ Open `materials.k` and start with a material card.
 案例来源：DYNAmore Drop Test 的 Reduced Input。原始数值保留；文件拆分和字段注释为体验组织。
 Source: the Reduced Input of the DYNAmore Drop Test. Numeric values are preserved; file splitting and field-label comments organize the experience.
 
+演示副本将原始文件的 `*KEYWORD_ID` 文件头规范为 `*KEYWORD`，以便正式发行版识别；工程数值没有修改。
+The demo copy normalizes the original `*KEYWORD_ID` file header to `*KEYWORD` for recognition by the released extension. Engineering values are unchanged.
+
 https://www.dynaexamples.com/show-cases/drop-test
