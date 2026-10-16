@@ -2,6 +2,7 @@ name: Check DynaSense release candidate
 on:
   workflow_dispatch:
   schedule:
+    # Wake daily at 09:23 Asia/Shanghai; query upstream only every 30 days.
     - cron: '23 1 * * *'
 permissions:
   contents: write
@@ -11,7 +12,21 @@ concurrency:
   group: dynasense-release-candidate
   cancel-in-progress: false
 jobs:
+  cadence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      due: ${{ steps.cadence.outputs.due }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m unittest discover -s scripts -p 'test_cadence.py' -v
+      - id: cadence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/release-check-due.py
   candidate:
+    needs: cadence
+    if: needs.cadence.outputs.due == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -52,3 +67,13 @@ jobs:
           fi
           gh workflow run validate-runtime.yml --ref "$branch"
           gh pr create --base main --head "$branch" --title "Update DynaSense release candidate" --body-file candidate/pr-body.md
+      - name: Record successful default-branch check
+        if: github.ref == 'refs/heads/main'
+        run: date -u +%FT%TZ > release-check-success.txt
+      - name: Retain 30-day checkpoint
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-check-success
+          path: release-check-success.txt
+          retention-days: 90
