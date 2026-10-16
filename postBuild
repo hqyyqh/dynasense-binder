@@ -7,4 +7,5 @@ code-server --extensions-dir "$HOME/.local/share/code-server/extensions" --insta
 python scripts/configure-workspace.py
 code-server --user-data-dir "$HOME/.local/share/code-server/profile-zh" --extensions-dir "$HOME/.local/share/code-server/extensions" --install-extension MS-CEINTL.vscode-language-pack-zh-hans@1.131.0
 python scripts/configure-language.py
+python scripts/configure-builtins.py
 rm -f assets/dynasense-linux-x64.vsix
