@@ -34,7 +34,7 @@ class ActivityBarCheck(unittest.TestCase):
     def test_layout_migration_in_javascript(self):
         script = r'''
 const assert = require('node:assert/strict');
-const y1 = { ACCOUNTS_VISIBILITY_PREFERENCE_KEY: 'workbench.activity.showAccounts' };
+const I1 = { ACCOUNTS_VISIBILITY_PREFERENCE_KEY: 'workbench.activity.showAccounts' };
 const readAccounts = eval('(' + accounts + ')');
 const key = 'workbench.activity.pinnedViewlets2';
 function host(saved, otherKey = key) {
@@ -70,10 +70,10 @@ for (const saved of [{}, {[key]: '[]'}, {[key]: JSON.stringify([
 const panel = host({'panel.pins': '[]'}, 'panel.pins');
 assert.equal(panel.getStoredPinnedViewContainersValue(), '[]');
 assert.deepEqual([...panel.data.keys()], ['panel.pins']);
-for (const saved of [{}, {[y1.ACCOUNTS_VISIBILITY_PREFERENCE_KEY]: true}]) {
+for (const saved of [{}, {[I1.ACCOUNTS_VISIBILITY_PREFERENCE_KEY]: true}]) {
     const h = host(saved);
     assert.equal(readAccounts(h.storageService), false);
-    h.data.set(y1.ACCOUNTS_VISIBILITY_PREFERENCE_KEY, true);
+    h.data.set(I1.ACCOUNTS_VISIBILITY_PREFERENCE_KEY, true);
     assert.equal(readAccounts(h.storageService), true);
 }
 '''

@@ -32,13 +32,13 @@ REPLACEMENT = ('getStoredPinnedViewContainersValue(){let value=this.storageServi
                'this.storageService.store(this.options.pinnedViewContainersKey,value,0,0);'
                'this.storageService.store("dynasense.activitybar.hiddenViews.v1",true,0,1);}'
                'return value}')
-ACCOUNTS_ORIGINAL = 'function Xrt(s){return s.getBoolean(y1.ACCOUNTS_VISIBILITY_PREFERENCE_KEY,0,!0)}'
+ACCOUNTS_ORIGINAL = 'function Xrt(s){return s.getBoolean(I1.ACCOUNTS_VISIBILITY_PREFERENCE_KEY,0,!0)}'
 ACCOUNTS_REPLACEMENT = (
     'function Xrt(s){'
     'if(!s.getBoolean("dynasense.activitybar.accountsHidden.v1",0,!1)){'
-    's.store(y1.ACCOUNTS_VISIBILITY_PREFERENCE_KEY,false,0,0);'
+    's.store(I1.ACCOUNTS_VISIBILITY_PREFERENCE_KEY,false,0,0);'
     's.store("dynasense.activitybar.accountsHidden.v1",true,0,1);}'
-    'return s.getBoolean(y1.ACCOUNTS_VISIBILITY_PREFERENCE_KEY,0,!1)}'
+    'return s.getBoolean(I1.ACCOUNTS_VISIBILITY_PREFERENCE_KEY,0,!1)}'
 )
 
 
@@ -54,4 +54,4 @@ def configure(path):
 
 
 if __name__ == "__main__":
-    configure(Path(sys.prefix) / "share/code-server/lib/vscode/out/vs/workbench/workbench.web.main.internal.js")
+    configure(Path(sys.prefix) / "share/code-server/lib/vscode/out/vs/code/browser/workbench/workbench.js")
