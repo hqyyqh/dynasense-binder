@@ -72,6 +72,10 @@ with tempfile.TemporaryFile(mode="w+") as log:
                         assert target.startswith(base), target
                         status, body, _ = get(target)
                         assert status == 200 and body.strip() and '<!DOCTYPE html>' not in body[:100]
+                        if target.endswith('/vs/code/browser/workbench/workbench.js'):
+                            assert 'dynasense.activitybar.hiddenViews.v1' in body
+                            assert 'dynasense.activitybar.accountsHidden.v1' in body
+                    assert any(asset.endswith('/vs/code/browser/workbench/workbench.js') for asset in assets.paths)
                     print(json.dumps({"language": language, "assets": assets.paths, "status": "passed"}), flush=True)
     finally:
         os.killpg(server.pid, signal.SIGTERM)
