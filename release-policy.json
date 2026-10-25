@@ -1,8 +1,8 @@
 {
   "repository": "hqyyqh/vscode-lsdyna",
   "source": "github-release",
-  "acceptedReleaseId": 411708043,
-  "acceptedAssetId": 637242438,
-  "acceptedPublishedAt": "2026-10-13T14:14:25Z",
-  "note": "Official v3.2.0 package baseline; runtime and browser acceptance remain separate from release selection."
+  "acceptedReleaseId": 423196872,
+  "acceptedAssetId": 674316253,
+  "acceptedPublishedAt": "2026-10-25T06:48:36Z",
+  "note": "Candidate release reference. Promote only after runtime and bilingual UI acceptance."
 }
