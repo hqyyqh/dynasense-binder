@@ -17,6 +17,7 @@ class LocaleWorkspaceCheck(unittest.TestCase):
                 settings = json.loads((home / f".local/share/code-server/profile-{suffix}/User/settings.json").read_text())
                 self.assertEqual(settings["lsdyna.language"], locale)
                 self.assertFalse(settings["security.workspace.trust.enabled"])
+                self.assertEqual(settings["lsdyna.cache.entityIndexMemoryMaxMiB"], 128)
                 self.assertTrue(settings["chat.disableAIFeatures"])
                 self.assertEqual(settings["workbench.secondarySideBar.defaultVisibility"], "hidden")
                 self.assertEqual(settings["git.openRepositoryInParentFolders"], "never")
