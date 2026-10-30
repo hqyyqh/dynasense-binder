@@ -1,11 +1,11 @@
 {
   "extension": {
-    "releaseId": 423196872,
-    "assetId": 674316253,
-    "tag": "v3.2.2",
-    "version": "3.2.2",
-    "url": "https://github.com/hqyyqh/vscode-lsdyna/releases/download/v3.2.2/dynasense-3.2.2-linux-x64.vsix",
-    "sha256": "d8a1a045e58dcc64603089fbe19a80ebe23ecc4bc2d25d233f2ad386866edb8a",
+    "releaseId": 429184092,
+    "assetId": 692510593,
+    "tag": "v3.2.3",
+    "version": "3.2.3",
+    "url": "https://github.com/hqyyqh/vscode-lsdyna/releases/download/v3.2.3/dynasense-3.2.3-linux-x64.vsix",
+    "sha256": "cfff5a5e0a07b2b8c71f406fed3d572bf800b2d9f666fa820bade095d1a42d3b",
     "source": "github-release"
   },
   "manual": {
